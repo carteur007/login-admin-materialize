@@ -1,13 +1,15 @@
 <?php
+ini_set('display_errors', 'on');
 $title = "Login";
 include '../src/topbarlogin.php';
-require '../admin/api.php';
+require_once '../admin/api.php';
 define('LOGIN', 'admin@sfb.com');
 define('PASSWORD', 'admin');
 
 //Vérification du formulaire 
 // Si le tableau $_POST existe alors le formulaire a été envoyé
-$message = 'Nom d\'utilisateur ou mot de pass incorrect';
+//$message = 'Nom d\'utilisateur ou mot de pass incorrect';
+$message = '';
 if (!empty($_POST)) :
     if (empty($_POST['email'])) :
         $message = 'Veuillez indiquer votre login svp !';
@@ -24,6 +26,8 @@ if (!empty($_POST)) :
         $data_url = http_build_query($data);
         $dashboard = "../admin/page/dashboard.php?page=dashboard&$data_url";
         redirect($uri, $dashboard);
+    else :
+        $message = 'Nom d\'utilisateur ou mot de pass incorrect';
     endif;
 endif;
 ?>
@@ -38,12 +42,15 @@ endif;
                 <div class='row'>
                     <div class='col s12'>
                         <h5 class="orange-default-text"><?= $message ?></h5>
-
+                        <?php if (!empty($_REQUEST['response_message'])) : ?>
+                            <h5 class="orange-default-text"><?= htmlspecialchars($_REQUEST['response_message']) ?></h5>
+                        <?php endif; ?>
                     </div>
                 </div>
 
                 <div class='row'>
                     <div class='input-field col s12'>
+                        <i class="material-icons prefix red-text">email</i>
                         <input class='validate' type='email' name='email' id='email' />
                         <label for='email'>Entrer votre email</label>
                     </div>
@@ -51,6 +58,7 @@ endif;
 
                 <div class='row'>
                     <div class='input-field col s12'>
+                        <i class="material-icons prefix red-text">lock</i>
                         <input class='validate' type='password' name='password' id='password' />
                         <label for='password'>Entrer votre mot de pass </label>
                     </div>
