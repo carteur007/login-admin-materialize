@@ -1,4 +1,6 @@
 <?php
+$title = "Utilisateurs";
+
 include __DIR__ . '/adminnavbar.php';
 ?>
 <!-- Section: Users -->

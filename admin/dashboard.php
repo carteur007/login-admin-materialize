@@ -5,6 +5,8 @@ require __DIR__ . '/api.php';
 global $email;
 global $message;
 global $name;
+$title = "Dashboard";
+
 if (empty($_SESSION['login'])) :
     $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
     $message = "Vous devez vous connecter pour acceder à cette page!";

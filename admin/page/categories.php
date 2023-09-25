@@ -1,4 +1,6 @@
 <?php
+$title = "Categories";
+
 include __DIR__ . '/adminnavbar.php';
 ?>
 <!-- Section: Categories -->

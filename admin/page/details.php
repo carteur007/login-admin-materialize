@@ -1,4 +1,6 @@
 <?php
+$title = "Details";
+
 include __DIR__ . '/adminnavbar.php';
 ?>
 <!-- Section: Details -->

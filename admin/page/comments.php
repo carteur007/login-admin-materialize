@@ -1,4 +1,6 @@
 <?php
+$title = "Commentaires";
+
 include __DIR__ . '/adminnavbar.php';
 ?>
 <!-- Section: Comments -->
