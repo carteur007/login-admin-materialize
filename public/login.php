@@ -1,4 +1,5 @@
 <?php
+session_start();
 ini_set('display_errors', 'on');
 $title = "Login";
 include '../src/topbarlogin.php';
@@ -11,6 +12,7 @@ define('NAME', 'Lace Carteur007');
 // Si le tableau $_POST existe alors le formulaire a été envoyé
 //$message = 'Nom d\'utilisateur ou mot de pass incorrect';
 $message = '';
+$success = '';
 if (!empty($_POST)) :
     if (empty($_POST['email'])) :
         $message = 'Veuillez indiquer votre login svp !';
@@ -27,10 +29,24 @@ if (!empty($_POST)) :
         ];
         $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
         $data_url = http_build_query($data);
+        $_SESSION['login'] = $data;
         $dashboard = "../admin/dashboard.php?page=admin&$data_url";
         redirect($uri, $dashboard);
     else :
         $message = 'Nom d\'utilisateur ou mot de pass incorrect';
+    endif;
+endif;
+if (!empty($_GET)) :
+    if (!empty($_GET['logout'])) :
+        if ((int)$_GET['logout'] === 1) :
+            unset($_SESSION);
+            if (ini_get("session.use_cookies")) :
+                $params = session_get_cookie_params();
+                setcookie(session_name(), '', time() - 42000, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+            endif;
+            session_destroy();
+            $success = 'Déconnexion avec success';
+        endif;
     endif;
 endif;
 ?>
@@ -45,6 +61,7 @@ endif;
                 <div class='row'>
                     <div class='col s12'>
                         <h5 class="orange-default-text"><?= $message ?></h5>
+                        <h5 class="green-text"><?= $success ?></h5>
                         <?php if (!empty($_REQUEST['response_message'])) : ?>
                             <h5 class="orange-default-text"><?= htmlspecialchars($_REQUEST['response_message']) ?></h5>
                         <?php endif; ?>
