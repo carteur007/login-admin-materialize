@@ -5,6 +5,7 @@ include '../src/topbarlogin.php';
 require_once '../admin/api.php';
 define('LOGIN', 'admin@sfb.com');
 define('PASSWORD', 'admin');
+define('NAME', 'Lace Carteur007');
 
 //Vérification du formulaire 
 // Si le tableau $_POST existe alors le formulaire a été envoyé
@@ -16,15 +17,17 @@ if (!empty($_POST)) :
     elseif (empty($_POST['password'])) :
         $message = 'Veuillez indiquer votre mot de passe svp !';
     elseif ((htmlspecialchars($_POST['email']) === LOGIN) && (htmlspecialchars($_POST['password']) === PASSWORD)) :
-        $message = base64_encode('Bienvenue ' . LOGIN . ' !');
+        $name = base64_encode(NAME);
+        $message = base64_encode('Bienvenue ' . NAME . '[' . LOGIN . '] !');
         $email = base64_encode(htmlspecialchars($_POST['email']));
         $data = [
+            'name' => $name,
             'email' => $email,
             'message' => $message
         ];
         $uri   = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
         $data_url = http_build_query($data);
-        $dashboard = "../admin/page/dashboard.php?page=dashboard&$data_url";
+        $dashboard = "../admin/dashboard.php?page=admin&$data_url";
         redirect($uri, $dashboard);
     else :
         $message = 'Nom d\'utilisateur ou mot de pass incorrect';

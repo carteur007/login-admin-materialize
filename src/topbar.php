@@ -56,7 +56,7 @@
                         <a href="#" data-target="nav-mobile" class="sidenav-trigger">
                             <i class="material-icons">menu</i>
                         </a>
-                        <ul class=" right hide-on-med-and-down">
+                        <ul class="right hide-on-med-and-down">
                             <li class=""><a href="../index.php?page=home">Accueil</a></li>
                             <li class=""><a href="../public/about.php?page=about">A propos</a></li>
                             <li class=""><a href="../public/contact.php?page=contact">Contact</a></li>

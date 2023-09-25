@@ -44,3 +44,22 @@ button .btn-login:hover{
     margin: 0;
     clip-path: circle(50% 50%);
 }
+/*start mamin style*/
+.loader {
+  position: absolute;
+  top: 40%;
+  left: 47%;
+}
+
+.login {
+  margin-top: 70px;
+  margin-bottom: 70px;
+}
+
+.btn-extended {
+  display: block;
+  width: 80%;
+  margin: auto;
+  margin-top: 20px;
+}
+/*end mamin style*/
