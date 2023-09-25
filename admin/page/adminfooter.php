@@ -48,6 +48,14 @@
     $('.section').hide();
     setTimeout(function() {
         $(document).ready(function() {
+            $('.tooltipped').tooltip();
+
+            $('.fixed-action-btn').floatingActionButton({
+                hoverEnabled: true,
+            });
+
+            $('.sidenav').sidenav();
+
             // Show sections
             $('.section').fadeIn();
 
